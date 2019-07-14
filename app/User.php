@@ -26,4 +26,21 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * A user has many messages
+     */  
+    public function message()
+    {
+        return $this->hasMany('APP\Message');       
+    }
+
+    /**
+     * ユーザーの一覧を取得（プルダウン用）
+     */
+    public static function getUserList()
+    {
+        // pluckメソッドは指定したキーの全コレクション値を取得します。
+        return static::latest()->pluck('name', 'id');
+    }    
 }

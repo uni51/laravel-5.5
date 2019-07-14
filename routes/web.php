@@ -33,5 +33,12 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function () {
     Route::get('logout', 'LoginController@logout')->name('logout');
     // 管理者画面TOP
     Route::get('', 'IndexController@index')->name('top');
+
+    // メッセージ管理
+    Route::get('message', 'MessageController@index')->name('message.index');
+    Route::get('message/create', 'MessageController@create')->name('message.create');
+    Route::post('message/create', 'MessageController@store');
+    Route::get('message/edit/{message}', 'MessageController@edit')->name('message.edit'); // モデル・ルート・バインディング
+    Route::post('message/edit/{message}', 'MessageController@update'); // モデル・ルート・バインディング    
   });
 });
