@@ -15,7 +15,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $message = Message::latest()->with('user')-get();
+        $messages = Message::latest()->with('user')->get();
                 
         return view('admin.message.index')->with(compact('messages'));
     }

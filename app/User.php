@@ -30,7 +30,7 @@ class User extends Authenticatable
     /**
      * A user has many messages
      */  
-    public function message()
+    public function messages()
     {
         return $this->hasMany('APP\Message');       
     }
