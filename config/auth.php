@@ -43,13 +43,13 @@ return [
 
         'user' => [
             'driver' => 'session',
-            'provider' => 'users',           
+            'provider' => 'users',
         ],
 
         'admin' => [
             'driver' => 'session',
-            'provider' => 'admins',           
-        ],        
+            'provider' => 'admins',
+        ],
 
         'api' => [
             'driver' => 'token',
@@ -80,10 +80,11 @@ return [
             'model' => App\User::class,
         ],
 
+        // 追加
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Admin::class, // モデルクラス名
-        ],       
+            'model' => App\Admin::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',

@@ -59,8 +59,8 @@ class SaveMessage extends FormRequest
     {
         // 方法1、手動で記載
         return $this->only('user_id', 'title', 'content');
-        
+
         // 方法2、rules() のキーに列挙された項目のみで返す
         //return $this->all(array_keys($this->rules()));
-    }    
+    }
 }

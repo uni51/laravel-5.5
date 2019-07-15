@@ -52,14 +52,4 @@ $app->singleton(
 |
 */
 
-// 開発時エラーログ出力用
-$app->configureMonologUsing(function ($monolog) {
-    $monolog->pushHandler(
-        new \Monolog\Handler\StreamHandler(
-            'php://stdout',
-            \Monolog\Logger::WARNING // TODO: 適切なログレベルを設定
-        )
-    );
-});
-
 return $app;

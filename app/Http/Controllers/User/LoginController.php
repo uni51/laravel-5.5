@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -15,7 +15,7 @@ class LoginController extends Controller
      */
     public function redirectTo()
     {
-        return route('admin.top');
+        return route('user.top');
     }
 
     /**
@@ -23,7 +23,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('admin.login');
+        return view('user.login');
     }
 
     /**
@@ -32,7 +32,7 @@ class LoginController extends Controller
     protected function validateLogin(Request $request)
     {
         $messages = [
-            $this->username().'.required' => 'ログインIDを入力して下さい。',
+            $this->username().'.required' => 'メールアドレスを入力して下さい。',
             'password.required' => 'パスワードを入力して下さい。',
         ];
 
@@ -40,14 +40,6 @@ class LoginController extends Controller
             $this->username() => 'required|string',
             'password' => 'required|string',
         ], $messages);
-    }
-
-    /**
-     * ログインIDの英語名
-     */
-    public function username()
-    {
-        return 'username';
     }
 
     /**
@@ -59,12 +51,12 @@ class LoginController extends Controller
 
         $this->guard()->logout();
 
-        // どちらか片方のみでログインしている時のみ、invalidate する
+        // どちらか片方でログインしている時のみ、invalidate する
         if ($partialLogin) {
             $request->session()->invalidate();
         }
 
-        return redirect()->route('admin.login');
+        return redirect()->route('user.login');
     }
 
     /**
@@ -72,6 +64,6 @@ class LoginController extends Controller
      */
     protected function guard()
     {
-        return auth('admin');
+        return auth('user');
     }
 }

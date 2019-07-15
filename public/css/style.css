@@ -1,18 +1,18 @@
 .error-box {
-  color: red;
+    color: red;
 }
 .info-box {
-  color: green;
+    color: green;
 }
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 td {
-  padding: 5px;
+    padding: 5px;
 }
 li > label:first-child {
-  width: 170px;
-  margin-right: 20px;
-  float: left;
+    width: 170px;
+    margin-right: 20px;
+    float: left;
 }
