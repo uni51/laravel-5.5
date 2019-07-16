@@ -46,3 +46,24 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function () {
     Route::delete('user/destroy/{user}', 'UserController@destroy')->name('user.destroy');  
   });
 });
+
+// ユーザー専用ページ
+Route::prefix('user')->namespace('User')->as('user.')->group(function () {
+
+  // ユーザーが認証している時にアクセスできなくなる
+  Route::middleware('guest:user')->group(function () {
+      Route::get('login', 'LoginController@showLoginForm')->name('login');
+      Route::post('login', 'LoginController@login');
+  });
+
+  Route::middleware('auth:user')->group(function () {
+      Route::get('', 'IndexController@index')->name('top');
+      Route::get('logout', 'LoginController@logout')->name('logout');
+      // 登録情報変更
+      Route::get('profile/edit', 'ProfileController@edit')->name('profile.edit');
+      Route::post('profile/edit', 'ProfileController@update');
+      // メッセージ閲覧
+      Route::get('message', 'MessageController@index')->name('message.index');
+      Route::get('message/show/{message}', 'MessageController@show')->name('message.show');
+  });
+});

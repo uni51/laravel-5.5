@@ -14,6 +14,7 @@ class MessageController extends Controller
     public function index(Request $request)
     {
         $messages = auth()->user()->messages()->latest()->get();
+        // $messages = Message::latest()->where('user_id', auth()->id())->get();
 
         return view('user.message.index')->with(compact('messages'));
     }
@@ -23,7 +24,9 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        $this->authorize($message);
+        // メッセージが他人宛の場合、見れないようにするために、MessagePolicy のviewメソッドでチェックする
+        $this->authorize('view',$message);
+        // $this->authorize($message);
 
         return view('user.message.show')->with(compact('message'));
     }

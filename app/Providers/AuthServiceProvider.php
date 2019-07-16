@@ -13,6 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
+        // メッセージモデルに関する認可処理は、MessagePolicyが請け負うことを定義
         'App\Message' => 'App\Policies\MessagePolicy',
     ];
 
