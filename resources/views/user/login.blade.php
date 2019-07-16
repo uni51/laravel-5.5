@@ -2,14 +2,14 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>管理者ログイン</title>
+<title>ユーザーログイン</title>
 <link type="text/css" rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-<h2>管理者ログイン</h2>
+<h2>ユーザーログイン</h2>
 
-<!-- エラー出力 -->
+<!-- エラーメッセージ -->
 @if ($errors->any())
     <ul class="error-box">
         @foreach ($errors->all() as $_error)
@@ -23,8 +23,8 @@
 
 <ul>
     <li>
-        <label>ログインID</label>
-        <input type="text" name="username" value="{{ old('username') }}">
+        <label>メールアドレス</label>
+        <input type="text" name="email" value="{{ old('email') }}">
     </li>
 
     <li>

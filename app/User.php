@@ -33,6 +33,7 @@ class User extends Authenticatable
     protected static function boot()
     {
         parent::boot();
+
         static::deleting(function($user) {
             $user->messages()->delete();
         });
@@ -40,7 +41,7 @@ class User extends Authenticatable
         
     /**
      * A user has many messages
-     */  
+     */
     public function messages()
     {
         return $this->hasMany('App\Message');       
@@ -53,5 +54,5 @@ class User extends Authenticatable
     {
         // pluckメソッドは指定したキーの全コレクション値を取得します。
         return static::latest()->pluck('name', 'id');
-    }    
+    }
 }

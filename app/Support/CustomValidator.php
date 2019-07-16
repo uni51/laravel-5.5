@@ -8,11 +8,6 @@ class CustomValidator extends Validator
 {
      /**
      * パスワードの長さチェック
-     * 
-     * @params
-     * $attribute：項目名
-     * $value：入力値
-     * $parameters：
      */
     public function validatePasswordBetween($attribute, $value, $parameters)
     {
@@ -29,7 +24,7 @@ class CustomValidator extends Validator
     }
 
     /**
-     * パスワードの長さチェックのメッセージの置換（メッセージの置換用メソッド）
+     * パスワードの長さチェックのメッセージの置換
      */
     protected function replacePasswordBetween($message, $attribute, $rule, $parameters)
     {

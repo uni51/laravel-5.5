@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveMessage;
 use App\Message;
-use App\user;
+use App\User;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -16,7 +16,7 @@ class MessageController extends Controller
     public function index()
     {
         $messages = Message::latest()->with('user')->get();
-                
+
         return view('admin.message.index')->with(compact('messages'));
     }
 
@@ -29,21 +29,19 @@ class MessageController extends Controller
 
         return view('admin.message.create')->with(compact('message', 'userlist'));
     }
-    
+
     /**
      * 新規登録処理
-     * SaveMessageをタイプヒントして、$requestオブジェクトを取得している。
-     * Form Requestは、インスタンス化される時点で、バリデーション処理も自動で呼び出される。
      */
     public function store(SaveMessage $request, Message $message)
     {
         $data = $request->getData();
 
         $message->forceFill($data)->save();
-        
+
         return redirect(route('admin.message.edit', $message))->with('_flash_msg', '登録が完了しました');
     }
-    
+
     /**
      * 変更画面
      */
@@ -53,7 +51,7 @@ class MessageController extends Controller
 
         return view('admin.message.create')->with(compact('message', 'userlist'));
     }
-    
+
     /**
      * 変更処理
      */
@@ -64,5 +62,5 @@ class MessageController extends Controller
         $message->forceFill($data)->save();
 
         return redirect(route('admin.message.edit', $message))->with('_flash_msg', '変更が完了しました');
-    }   
+    }
 }

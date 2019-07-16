@@ -16,7 +16,6 @@
     </ul>
 @endif
 
-<!-- 開いているURLと同じURLに送信するため、formのaction属性は省略している -->
 <form method="post">
 {{ csrf_field() }}
 
