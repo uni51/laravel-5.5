@@ -32,6 +32,8 @@ class MessageController extends Controller
 
     /**
      * 新規登録処理
+     * SaveMessageをタイプヒントして、$requestオブジェクトを取得している。
+     * Form Requestは、インスタンス化される時点で、バリデーション処理も自動で呼び出される。 
      */
     public function store(SaveMessage $request, Message $message)
     {

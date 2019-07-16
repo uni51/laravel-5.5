@@ -10,6 +10,7 @@ $factory->define(App\Admin::class, function (Faker $faker) {
 
     return [
         'username' => str_random(6),
+        // $passwordが存在する場合は、$passwordをセット。存在しない場合はsecretをセット
         'password' => $password ?: $password = bcrypt('secret'),
     ];
 });

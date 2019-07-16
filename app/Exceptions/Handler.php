@@ -65,6 +65,7 @@ class Handler extends ExceptionHandler
             return response()->json(['message' => $exception->getMessage()], 401);
         }
 
+        // $exception->guards()[0] で、認証区分（guard名、'user'や'admin'など）を取得している
         $route = ($guard = $exception->guards()[0]) ? $guard.'.login': 'login';
 
         return redirect()->guest(route($route));

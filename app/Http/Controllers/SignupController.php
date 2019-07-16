@@ -14,6 +14,9 @@ class SignupController extends Controller
 
     /**
      * 登録画面
+     * 
+     * @params
+     * User $user：新規のユーザーモデルを取得
      */
     public function index(User $user)
     {
@@ -23,6 +26,15 @@ class SignupController extends Controller
 
         return view('signup.index')->with(compact('user'));
     }
+
+    // public function index()
+    // {
+    //     $user = new User();
+    //     if ($data = \Session::get($this->sessionKey)) {
+    //         $user->fill($data);
+    //     }
+    //     return view('signup.index')->with(compact('user'));
+    // }   
 
     /**
      * 検証
@@ -35,6 +47,10 @@ class SignupController extends Controller
             'password' => 'required|confirmed|password_between:4,30|password_string',
         ]);
 
+        // こちらは不要
+        // $data = $request->only('name', 'email', 'password');
+
+        // 検証済みデータをセッションに保存        
         \Session::put($this->sessionKey, $data);
 
         return redirect()->route('signup.confirm');
@@ -65,8 +81,10 @@ class SignupController extends Controller
 
         $user->fill($data)->save();
 
+        // 登録したユーザーを、ユーザー区分でログイン状態とする（config/auth.php参照）
         auth('user')->login($user);
 
+        // 使用済みのセッションを削除
         \Session::forget($this->sessionKey);
 
         return redirect()->route('signup.thanks');
